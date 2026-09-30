@@ -3,7 +3,7 @@
 <package format="3">
   <name>limo_cerrado_sim</name>
   <version>0.1.0</version>
-  <description>AgileX LIMO Pro (official limo_description model) with a Livox MID-360 in the procedural Cerrado 32x32 m world, for Gazebo Harmonic + ROS 2 Jazzy.</description>
+  <description>AgileX LIMO Pro (official limo_description model) with a Livox MID-360 in the procedural Cerrado 32x32 m world, for Gazebo Harmonic + ROS 2 Humble.</description>
   <maintainer email="joaorafaelguimaraes@gmail.com">Joao Rafael</maintainer>
   <license>BSD-3-Clause</license>
 

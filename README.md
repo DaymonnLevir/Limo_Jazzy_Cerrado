@@ -1,6 +1,6 @@
 # limo_ws — AgileX LIMO Pro + Livox MID-360 no mundo Cerrado
 
-Workspace independente (ROS 2 Jazzy + Gazebo Harmonic). Nao usa nem altera o `mrs_ws`.
+Workspace independente (ROS 2 Humble + Gazebo Harmonic). Nao usa nem altera o `mrs_ws`.
 
 ## Conteudo
 
@@ -12,11 +12,34 @@ Workspace independente (ROS 2 Jazzy + Gazebo Harmonic). Nao usa nem altera o `mr
 
 `limo_base` e `limo_car` do repo oficial nao sao compilados: dependem do hardware e do Gazebo Classic.
 
+## Ambiente Humble com Docker
+
+Clone esta branch com `git clone --recurse-submodules --branch humble-harmonic https://github.com/DaymonnLevir/Limo_Jazzy_Cerrado.git`.
+Na raiz do clone, construa a imagem:
+
+```bash
+docker build -t limo-humble-harmonic -f docker_humble/Dockerfile .
+```
+
+Para executar sem interface grafica:
+
+```bash
+docker run --rm -it --network host \
+  -v "$PWD:/workspace" -w /workspace limo-humble-harmonic bash
+./build.sh
+source install/setup.bash
+ros2 launch limo_cerrado_sim limo_cerrado.launch.py gui:=false rviz:=false headless_rendering:=true nvidia:=false
+```
+
+A interface grafica requer configurar o acesso ao display e a GPU do computador no Docker.
+O mundo padrao de 15 arvores esta incluido; o de 68 arvores requer os modelos externos descritos abaixo.
+Os workspaces de CT-LIO, FAST-LIO e Point-LIO e os resultados de experimentos nao fazem parte desta configuracao basica.
+
 ## Compilar e rodar
 
 ```bash
-cd /root/limo_ws && ./build.sh
-source /root/limo_ws/install/setup.bash
+cd /workspace && ./build.sh
+source /workspace/install/setup.bash
 ros2 launch limo_cerrado_sim limo_cerrado.launch.py
 ```
 
